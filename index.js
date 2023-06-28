@@ -2,10 +2,11 @@ const express = require("express")
 const cors = require("cors")
 const mongoose = require("mongoose")
 const bodyParser = require("body-parser")
+const dotenv = require("dotenv").config()
 
 //instance of express app
 const app=express();
-const PORT=9002;
+const PORT=process.env.PORT;
 app.use(cors());
 app.use(bodyParser.json())
 // app.use(express.json());
@@ -14,7 +15,7 @@ app.use(bodyParser.json())
 
 mongoose.set('strictQuery', true);
 mongoose.connect(
-    "mongodb+srv://pardeep:RegistrationFlow@cluster0.u0ehe7h.mongodb.net/myLoginRegisterDb",{
+    process.env.MONGO_URL,{
         useNewUrlParser:true,
         useUnifiedTopology:true
     },(err)=>{
