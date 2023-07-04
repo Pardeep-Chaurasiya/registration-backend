@@ -45,6 +45,7 @@ app.post("/login",(req,res)=>{
 
     User.findOne({email:email},(err,user)=>{
         if(user){
+            console.log("login",user)
             if(password===user.password){
                 res.send({message:"Login Successful",user:user})
             }else{
@@ -62,6 +63,7 @@ app.post('/register',(req,res)=>{
     
     User.findOne({email:email},(err,user)=>{
         if(user){
+            console.log("register",user)
             res.send({message:"User Already Registered"});
         }else{
                 //create a new User instance object with 3 details
@@ -70,7 +72,7 @@ app.post('/register',(req,res)=>{
                 email:email,
                 password:password
             })
-
+            console.log("register else",user)
             user.save((err)=>{
                 if(err){
                     res.send(err);
